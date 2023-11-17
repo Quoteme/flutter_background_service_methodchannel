@@ -195,6 +195,25 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  void _testMethodChannel() async {
+    // ❗️❗️❗️ IMPORTANT ❗️❗️❗️
+    // here we try to call a method from our methdod-channel and we will NOT fail
+    const MethodChannel channel = MethodChannel('com.myexample/test_channel');
+    try {
+      var test = await channel.invokeMethod('test');
+      print(test);
+    } catch (e) {
+      print(e);
+    }
+    // ❌❌❌ END OF IMPORTANT ❌❌❌
+  }
+
+  @override
+  void initState() {
+    _testMethodChannel();
+    super.initState();
+  }
+
   String text = "Stop Service";
   @override
   Widget build(BuildContext context) {
