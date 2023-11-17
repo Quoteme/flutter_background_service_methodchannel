@@ -106,6 +106,7 @@ void onStart(ServiceInstance service) async {
     print(test);
   } catch (e) {
     print(e);
+    // -> `MissingPluginException (MissingPluginException(No implementation found for method test on channel com.myexample/test_channel))`
   }
   // ❌❌❌ END OF IMPORTANT ❌❌❌
 
@@ -201,7 +202,7 @@ class _MyAppState extends State<MyApp> {
     const MethodChannel channel = MethodChannel('com.myexample/test_channel');
     try {
       var test = await channel.invokeMethod('test');
-      print(test);
+      print(test); // -> "Hello from iOS"
     } catch (e) {
       print(e);
     }
